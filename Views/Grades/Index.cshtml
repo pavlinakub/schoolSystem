@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Grade>//co pujde videt v prohlizeci ...pouzivam html jazyk
+<div>
+    @if (User.Identity.IsAuthenticated && (User.IsInRole("Teacher") || User.IsInRole("Director") || User.IsInRole("Visitor")))  //pristup ma jen teacher or director
+    {
+        <a class="btn btn-success" asp-action="Create">Create new grade</a>
+    }
+</div>
+
+<hr /> @* horizontalni cara*@
+
+<h3>List of grades:</h3>
+@foreach (var item in Model)
+{
+    <div class="border border-1 border-dark p-2 ">
+        @*//ramecek*@
+        <h5>@item.Student.FirstName @item.Student.LastName</h5>  @*//nadpis*@
+        @*  Id: item.Id                          @*  //cislo   *@
+        <p>@item.Subject.Name - @item.What: @item.Mark</p>  @*//odstavec a v nem je datum narozeni*@
+        <p>@item.Date.ToShortDateString()</p>
+        @if (User.Identity.IsAuthenticated && (User.IsInRole("Teacher") || User.IsInRole("Director")||User.IsInRole("Visitor"))){
+            <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>       @*odkaz ktery dostane class buton a warning a denger je barva(tak se stylizuji tlacitka v bootstrapu)*@
+            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        }
+    </div>
+}

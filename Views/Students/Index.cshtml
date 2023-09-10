@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Student>//co pujde videt v prohlizeci ...pouzivam html jazyk 
+<h3>List of students:</h3>
+
+
+
+<form method="post" enctype="multipart/form-data" asp-controller="FileUpload" asp-action="Upload">
+    <div class="form-group">
+        <input type="file" name="file" />
+        @*pozor, na name je zavisle jmeno parametru, cili souboru predavaneho do controlleru. Pokud se parametr jmenuje file, musi i name inputu byt file*@
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Upload" />
+    </div>
+</form>
+
+<div>
+    <a class="btn btn-success" asp-action="Create">Create new student</a>
+</div>
+<hr /> @* horizontalni cara*@
+
+@foreach(var item in Model)
+{<div class="border border-1 border-dark p-2 "> @*//ramecek*@
+    <h5>@item.FirstName @item.LastName</h5>  @*//nadpis*@
+    Id: @item.Id                          @*  //cislo   *@             
+    <p>Date of Birth: @item.DateOfBirth.Date.ToShortDateString()</p>  @*//odstavec a v nem je datum narozeni*@
+    <a class="btn btn-warning" asp-action="Edit" asp-route-id="@item.Id">Edit</a>       @*odkaz ktery dostane class buton a warning a denger je barva(tak se stylizuji tlacitka v bootstrapu)*@
+        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+    </div>
+}
+   
+ 
+
+
+

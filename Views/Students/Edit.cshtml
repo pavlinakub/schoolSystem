@@ -1,0 +1,19 @@
+﻿@model Student
+<form asp-action="Edit">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input type="text" asp-for="@Model.FirstName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input type="text" asp-for="@Model.LastName" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="DateOfBirth"></label>
+        <input type="date" asp-for="@Model.DateOfBirth" class="form-control" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-success" value="Update" />
+    </div>
+
+</form>

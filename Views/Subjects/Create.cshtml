@@ -1,0 +1,16 @@
+﻿@model Subject
+<form asp-action="Create">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div>
+        <input type="submit" class="btn btn-success" value="Create" />
+    </div>
+
+</form>
+@*@section Script{          @*validace na strane clienta( rovnou zahlasi chybu,kdyz pisu)skriptovaci jazych  jquerry(javascript)*@
+@*{
+    <partial name="_ValidationScriptsPartial" />    @*partial view- View/shared/_ValidationScriptsPartial(prilinkovani scriptu) *@
+@*}
+}*@
